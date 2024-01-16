@@ -10,7 +10,7 @@
 
 Name:           python-%{pkgname}
 Version:        0.1.5
-Release:        3.CROC2_REDOS_TEST1%{?dist}
+Release:        3.CROC13_REDOS_TEST1%{?dist}
 Summary:        %{sum}
 
 License:        BSD licence
@@ -26,14 +26,15 @@ Summary:        %{sum}
 Requires:       python%{el_python3_pkgversion}-requests
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-setuptools
+%if 0%{?redos}
+Provides:       python3.8dist(%{pkgname})
+%endif
 
 %description -n python%{python3_pkgversion}-%{pkgname}
 %{descr}
 
 %prep
 %setup -q -n %{pkgname}-%{version}
-
-sed -i '/setup_requires/d; /install_requires/d; /dependency_links/d' setup.py
 
 %build
 %{py3_build}
