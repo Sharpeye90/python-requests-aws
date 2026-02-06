@@ -1,16 +1,10 @@
-%if 0%{?el8} || 0%{?redos}
-%global el_python3_pkgversion 3
-%else
-%global el_python3_pkgversion 36
-%endif
-
 %define pkgname requests-aws
 %global sum AWS authentication for Amazon S3 for the python requests module
 %global descr AWS authentication for Amazon S3 for the python requests module
 
 Name:           python-%{pkgname}
 Version:        0.1.5
-Release:        3.ROCKIT4%{?dist}
+Release:        3.ROCKIT5%{?dist}
 Summary:        %{sum}
 
 License:        BSD licence
@@ -23,7 +17,7 @@ BuildArch:      noarch
 
 %package -n python%{python3_pkgversion}-%{pkgname}
 Summary:        %{sum}
-Requires:       python%{el_python3_pkgversion}-requests
+Requires:       python%{python3_pkgversion}-requests
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-setuptools
 %if 0%{?redos}
@@ -54,6 +48,9 @@ find %buildroot/ -name '*.egg-info' -exec rm -rf -- '{}' '+'
 %{python3_sitelib}/*
 
 %changelog
+* Fri Feb 06 2026 Evgenii Pozdniakov <epozdniakov@k2.cloud> - 0.1.5-3.ROCKIT5
+- Remove el7 support
+
 * Mon Jan 16 2023 Ivan Konov <ikonov@croc.ru> - 0.1.5-3.CROC2
 - Do not build py2 packages on rhel8+
 - Remove py2 support
