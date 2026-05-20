@@ -4,7 +4,7 @@
 
 Name:           python-%{pkgname}
 Version:        0.1.5
-Release:        3.ROCKIT5%{?dist}
+Release:        3.ROCKIT6%{?dist}
 Summary:        %{sum}
 
 License:        BSD licence
@@ -19,9 +19,11 @@ BuildArch:      noarch
 Summary:        %{sum}
 Requires:       python%{python3_pkgversion}-requests
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
-%if 0%{?redos}
+BuildRequires:  python%{python3_pkgversion}-setuptools <= 72.0.0
+%if 0%{?redos} == 7
 Provides:       python3.8dist(%{pkgname})
+%elif 0%{?redos} == 8
+Provides:       python3.11dist(%{pkgname})
 %endif
 
 %description -n python%{python3_pkgversion}-%{pkgname}
@@ -48,6 +50,9 @@ find %buildroot/ -name '*.egg-info' -exec rm -rf -- '{}' '+'
 %{python3_sitelib}/*
 
 %changelog
+* Tue Jun 23 2026 Linar Nasyyrov <lnasyyrov@k2.cloud> - 0.1.5-3.ROCKIT6
+- Add RedOS 8.0 support
+
 * Fri Feb 06 2026 Evgenii Pozdniakov <epozdniakov@k2.cloud> - 0.1.5-3.ROCKIT5
 - Remove el7 support
 
