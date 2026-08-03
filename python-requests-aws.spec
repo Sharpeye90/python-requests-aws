@@ -4,7 +4,7 @@
 
 Name:           python-%{pkgname}
 Version:        0.1.5
-Release:        3.ROCKIT6%{?dist}
+Release:        3.ROCKIT6TEST%{?dist}
 Summary:        %{sum}
 
 License:        BSD licence
